@@ -1,19 +1,16 @@
 //This file defines the parameters used in the alu
-package definitions;
+package definitionsABC;
     
 // Instruction map
-    const logic [2:0] kADDL  = 'b000;
-	const logic [2:0] kADDU  = 'b001;
-    const logic [2:0] kLSAL  = 'b010;
-	const logic [2:0] kLSAU  = 'b011;
-    const logic [1:0]kAND  = 2'b10;
-    const logic [1:0]kXOR  = 2'b11;
-    
-    typedef enum logic[1:0] {
-        ADDU    = 2'h0, 
-        SUBU    = 2'h1, 
-        AND     = 2'h2,
-        XOR     = 2'h3
-    } op_mne;
+const logic [3:0] kADDL  = 'b0000;
+const logic [3:0] kSUB  = 'b0001;
+const logic [3:0] kXOR  = 'b0010;
+const logic [3:0] kNOT  = 'b0011;
+const logic [3:0] kSRA  = 'b0100;
+const logic [3:0] kSRG  = 'b0101;
+const logic [3:0] kSLG  = 'b0110;
+const logic [3:0] kSLO  = 'b0111;
+const logic [3:0] kBL   = 'b1000;
+const logic [3:0] kBMH  = 'b1001;
     
 endpackage // defintions
