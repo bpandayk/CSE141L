@@ -25,7 +25,7 @@ module IF(
 	else if(Halt)
 	  PC <= PC;
 	else if(Branch)
-	  PC <= Target;
+	  PC <= PC + Target;
 	else
 	  PC <= PC+1;
 
