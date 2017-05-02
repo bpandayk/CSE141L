@@ -12,7 +12,7 @@
 // Additional Comments: 
 module IF(
   input Branch,
-  input [7:0] Target,
+  input signed [7:0] Target,
   input Init,
   input Halt,
   input CLK,
