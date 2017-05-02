@@ -15,7 +15,7 @@
 // Additional Comments: 
 //   combinational (unclocked) ALU
 
-import definitions::*;			  // includes package "definitions"
+import definitionsABC::*;			  // includes package "definitions"
 module ALU_ABC(
   input        SC_IN,             // shift in/carry in 
   input [ 3:0] OP,				  // ALU opcode, part of microcode
@@ -26,7 +26,7 @@ module ALU_ABC(
   output logic BR_FLAG			  //Flag set if we are to take branch
     );
 	 
-  op_mne op_mnemonic;			  // type enum: used for convenient waveform viewing
+  //op_mne op_mnemonic;			  // type enum: used for convenient waveform viewing
 	
   always_comb begin
 // option 2 -- separate LSW and MSW instructions
@@ -55,7 +55,7 @@ module ALU_ABC(
 				  end
     endcase
 //$display("ALU Out %d \n",OUT);
-    op_mnemonic = op_mne'(OP);
+    //op_mnemonic = op_mne'(OP);
   end
 
 endmodule
