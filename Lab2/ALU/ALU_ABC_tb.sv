@@ -44,13 +44,17 @@ module ALU_ABC_tb;
 	  #100ns;
 
 // Add stimulus here
-// check if writing works
+// check operations
 	  INPUTA     =  'h1;
 	  INPUTB 		 =  'h1;
 	  SC_IN			 =  'b0;
 	  OP         =  'b0000;
 	  #20ns;
     OP         =  'b0001;
+    #20ns;
+    OP         =  'b0010;
+    #20ns
+    OP         =  'b0011;
     #20ns;
 $stop;
 	end
