@@ -44,17 +44,46 @@ module ALU_ABC_tb;
 	  #100ns;
 
 // Add stimulus here
-// check operations
-	  INPUTA     =  'h1;
+// check if writing works
+	  INPUTA     =  'h1;     //Test add 1+1=2
 	  INPUTB 		 =  'h1;
 	  SC_IN			 =  'b0;
 	  OP         =  'b0000;
 	  #20ns;
-    OP         =  'b0001;
+    OP         =  'b0001;  //Test subtract 1-1=0
     #20ns;
-    OP         =  'b0010;
+    OP         =  'b0010;  //test XOR
     #20ns
-    OP         =  'b0011;
+    OP         =  'b0011;  //test not
+    #20ns;
+    INPUTB     =  'hf0;    //Test
+    OP         =  'b0100;
+    #20ns;
+    INPUTB     =  'hff;
+    OP         =  'b0101;
+    #20ns;
+    INPUTB     =  'hff;
+    OP         =  'b0110;
+    #20ns;
+    INPUTB     =  'h00;
+    SC_IN      =  'b1;
+    OP         =  'b0111;
+    #20ns;
+    INPUTA     =  'h0f;   //Test bl true
+    INPUTB     =  'h10;
+    OP         =  'b1000;
+    #20ns;
+    INPUTA     =  'h10;   //test bl false
+    INPUTB     =  'h0f;
+    OP         =  'b1000;
+    #20ns;
+    INPUTA     =  'h10;   //test bl false
+    INPUTB     =  'h10;
+    OP         =  'b1000;
+    #20ns;
+    INPUTA     =  'h10;   //test bmh true
+    INPUTB     =  'h10;
+    OP         =  'b1001;
     #20ns;
 $stop;
 	end
