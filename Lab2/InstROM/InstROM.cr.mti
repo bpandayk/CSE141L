@@ -1,0 +1,15 @@
+C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module InstROM
+
+Top level modules:
+	InstROM
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM_tb.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module InstROM_tb
+
+Top level modules:
+	InstROM_tb
+
+} {} {}}

@@ -1,0 +1,60 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/16.1/CSE141/Lab2/ALU
+vInstROM
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1494447903
+!i10b 1
+!s100 lU@UB:MFH;8TCizC6j[lH1
+IOV[4o96DBmfc9nXg:Y3f92
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 InstROM_sv_unit
+S1
+Z3 dC:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM
+w1494363160
+8C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM.sv
+FC:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM.sv
+L0 19
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1494447902.000000
+!s107 C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM.sv|
+!i113 1
+Z5 o-work work -sv
+Z6 tCvgOpt 0
+n@inst@r@o@m
+vInstROM_tb
+R0
+R1
+!i10b 1
+!s100 H:=SPSjJTR7Xjd@M1iKV:3
+IL01MAknNU<6FZ^I4kOa_:0
+R2
+!s105 InstROM_tb_sv_unit
+S1
+R3
+w1494363307
+8C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM_tb.sv
+FC:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM_tb.sv
+L0 25
+R4
+r1
+!s85 0
+31
+!s108 1494447903.000000
+!s107 C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141/Lab2/InstROM/InstROM_tb.sv|
+!i113 1
+R5
+R6
+n@inst@r@o@m_tb
