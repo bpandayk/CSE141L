@@ -2,7 +2,7 @@
 //
 // Create Date:   13:31:49 10/17/2016
 // Design Name:   ALU_ABC_tb
-// Module Name:   reg_file_tb.v
+// Module Name:
 // Project Name:  lab_basics
 // Target Device:
 // Tool versions:
@@ -19,9 +19,9 @@
 
 module ALU_ABC_tb;
 // DUT Input Drivers
-   bit          	SC_IN;	   // bit self-initializes to 0, not x (handy)
-	bit [3:0]		OP;
-	bit [7:0]		INPUTA, INPUTB;
+  logic          	SC_IN;	   // bit self-initializes to 0, not x (handy)
+	logic [3:0]		OP;
+	logic [7:0]		INPUTA, INPUTB;
 // DUT Outputs
 	wire	[7:0]		OUT;
 	wire				SC_OUT,
