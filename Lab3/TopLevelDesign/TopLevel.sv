@@ -19,128 +19,160 @@ module TopLevel(
   input         CLK,
   output        halt);
 // control signals
-  wire [ 3:0] write_register;
-  wire [7:0] regWriteValue;
-  wire        REG_WRITE;
-  wire [7:0] memWriteValue;
-  wire        MEM_WRITE;
-  wire [ 7:0] PC;
-  wire        BRANCH;
-  logic[15:0] InstCounter;
-  wire [ 9:0] Instruction;
-  wire MEM_READ,REG_DST,MEM_TO_REG,HALT;
-  wire [3:0] ALU_OP;
-  wire [1:0] ALU_SRC_B;
+wire        REG_WRITE,
+            MEM_WRITE,
+            MEM_READ,
+            0_OR_RT,
+            ALU_SRC_B,
+            BRANCH,
+            HALT;
+wire [1:0]  DATA_SRC;
+wire [3:0]  ALU_OP;
 
-// Data mem wires
-  wire [7:0] MemOut;
+logic [15:0] InstCounter;
+
 
 // IF module inputs
-  wire [7:0] Target;
+wire [7:0] Target;
+
+//IF Outputs
+wire [ 7:0] PC;
+
+//Instruction ROM input is PC
+
+//Instruction ROM outputs
+wire [ 9:0] Instruction;
+
+//reg_file inputs
+wire [3:0] write_register;
+wire [7:0] data_in;
+
+Mux2_4bit reg_dst_mux(  //destination register mux
+  .in1(0),
+  .in2(Instruction[5:2]),
+  .ctl(0_OR_RT),
+  .outVal(write_register)
+);
 
 // Register File data outs
-  wire [7:0] ReadA;
-  wire [7:0] ReadB;
+wire [7:0] data_outA;
+wire [7:0] data_outB;
 
-// ALU wires
-  wire [7:0] SE_Immediate;
-  wire [7:0] IntermediateMux;
-  wire [7:0] ALUInputB;
-// ALU outputs
-  wire BR_FLAG, SC_OUT;
-  wire [7:0] ALUOut;
+//ALU inputs
+wire       sc_in;
+wire [7:0] alu_input_b,
+           se_immediate;
 
-// control write register and write data muxes
-  assign write_register = REG_DST? Instruction[5:2]:4b'0000;
-  regWriteValue = (MEM_TO_REG==1)?ALUOut:MemOut;
-  assign regWriteValue = ALUOut;
+assign se_immediate = {{2{Instruction[5]}}, Instruction[5:0]};
 
-// control ALU SRC MUX
-  assign SE_Immediate    = {{2{Instruction[5]}}, Instruction[5:0]};
-  Mux2 IntermediateMux(
-    .in1 (ReadB),
-    .in2 (SE_Immediate),
-    .outVal (ALUInputB));
+Mux2 alu_src_mux(
+  .in1(data_outB),
+  .in2(se_immediate),
+  .ctl(0_OR_RT),
+  .outVal(alu_input_b)
+);
 
-// assign input to memory
-  assign memWriteValue = ReadB;
+//ALU Outputs
+wire       sc_out,
+           br_flag;
+wire [7:0] alu_out;
 
-``//PC and next PC logic built into if_module
-  IF if_module (
-    .Branch  (BRANCH & BR_FLAG),
-    .Target  (Target), //need to write LUT and use output as input for target
-    .Init    (start),
-    .Halt    (halt),
-    .CLK          ,
-    .PC
-	);
+// Data mem wires
+wire [7:0] mem_out;
+
+Mux3 data_select(
+  .in1(mem_out),
+  .in2(alu_out),
+  .in3(se_immediate)
+  .ctl(DATA_SRC),
+  .outVal(data_in)
+);
+
+
+//PC and next PC logic built into if_module
+IF if_module (
+  .Branch(BRANCH & br_flag) ,
+  .Target(Target)           ,
+  .Init(start)              ,
+  .Halt(halt)               ,
+  .CLK                      ,
+  .PC
+);
+
+target_LUT tLUT (
+ .lutKey (Instruction[5:0]),
+ .targetVal (Target)
+);
 
 // instruction ROM
-  InstROM inst_module(
-	.InstAddress   (PC),
-	.InstOut       (Instruction)
-	);
+InstROM inst_module(
+  .InstAddress   (PC),
+  .InstOut       (Instruction)
+);
 
-  target_LUT tLUT (
-   .lutKey (Instruction[5:0]),
-   .targetVal (Target)
-  );
+
 
 // Control module
-  Control control_module (
-    .OPCODE  (Instruction[9:6]),
-    .ALU_OP               ,
-    .ALU_SRC_B            ,
-    .REG_WRITE            ,
-    .BRANCH               , 		   //
-    .MEM_WRITE            ,
-    .MEM_READ             ,
-    .REG_DST              , 		   //
-    .MEM_TO_REG           ,
-    .HALT(halt)
-	);
+Control control_module (
+  .opcode  (Instruction[8:6]),
+  .funct   (Instruction[1:0]),
+  .ALU_OP               ,
+  .DATA_SRC             ,
+  .BRANCH               ,
+  .0_OR_RT              ,
+  .REG_WRITE            ,
+  .MEM_WRITE            ,
+  .MEM_READ             ,
+  .ALU_SRC_B            ,
+  .HALT(halt)
+);
 
-  reg_file_ABC register_module (
-	.clk       (CLK)           ,
-	.write_en  (REG_WRITE),
-	.raddrB    (Instruction[5:2]}),
-	.waddr     (write_register), 	  // mux above
-	.data_in   (regWriteValue) ,
-	.data_outA                     ,
-	.data_outB
-	);
 
-  ALU_ABC ALU_Module (
-  .SC_IN,
-	.OP     (ALU_OP) ,
-	.INPUTA (data_outA)  ,
-	.INPUTB (ALUInputB),
-	.OUT    (ALUOut)  ,
-	.SC_OUT            ,
-	.BR_FLAG
-	);
+reg_file_ABC register_module (
+.clk       (CLK)               ,
+.write_en  (REG_WRITE)         ,
+.raddrB    (Instruction[5:2]}) ,
+.waddr     (write_register)    , 	  // mux above
+.data_in                       ,
+.data_outA                     ,
+.data_outB
+);
 
-  DataRAM Data_Module(
+ALU_ABC ALU_Module (
+.SC_IN  (sc_in)       ,
+.OP     (ALU_OP)      ,
+.INPUTA (data_outA)   ,
+.INPUTB (alu_input_b) ,
+.OUT    (alu_out)     ,
+.SC_OUT (sc_out)      ,
+.BR_FLAG(br_flag)
+);
+
+always @(posedge CLK) begin
+  sc_in <=sc_out;
+end
+
+data_mem Data_Module(
 	.CLK                           ,
   .DataAddress  (ReadA)          ,
 	.ReadMem      (MEM_READ)       ,
 	.WriteMem     (MEM_WRITE)      ,
-	.DataIn       (memWriteValue)  ,
-	.DataOut      (MemOut)
-	);
+	.DataIn       (data_outB)  ,
+	.DataOut      (mem_out)
+);
 
-	// might help debug
-	/*
-	always@(SE_Immediate)
-	begin
-	$display("SE Immediate = %d",SE_Immediate);
-	end
-	*/
+// might help debug
+/*
+always@(SE_Immediate)
+begin
+$display("SE Immediate = %d",SE_Immediate);
+end
+*/
 
-  always@(posedge CLK)
-	if (start)
-      InstCounter <= 0;
-	else if(!halt)
-	  InstCounter <= InstCounter+1;
+always@(posedge CLK)
+if (start)
+    InstCounter <= 0;
+else if(!halt)
+  InstCounter <= InstCounter+1;
 
 endmodule

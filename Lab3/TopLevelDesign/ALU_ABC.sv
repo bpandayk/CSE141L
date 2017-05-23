@@ -34,7 +34,7 @@ module ALU_ABC(
 	  kSUB  : begin {SC_OUT, OUT} = INPUTA - INPUTB;	BR_FLAG=0; end //subtract
 	  kXOR  : begin OUT = INPUTA ^ INPUTB; SC_OUT=0; BR_FLAG=0; end //XOR INPUTA and INPUTB
 	  kNOT  : begin OUT = ~INPUTB; SC_OUT=0; BR_FLAG=0; end
-	  kSRA  : begin OUT = (INPUTB>>>1); SC_OUT=0; BR_FLAG=0; end
+	  kSRA  : begin {OUT, SC_OUT} = (INPUTB>>>1); BR_FLAG=0; end
 	  kSRG  : begin {OUT, SC_OUT}= (INPUTB>>1); BR_FLAG=0; end
 	  kSLG  : begin {SC_OUT,OUT} = (INPUTB<<1); BR_FLAG=0; end  	// universal shift instruction
 	  kSLO  : begin OUT = (INPUTB<<1) + SC_IN; SC_OUT=0; BR_FLAG=0; end

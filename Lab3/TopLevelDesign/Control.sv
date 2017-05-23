@@ -7,11 +7,15 @@ module Control(
   output BRANCH,
          0_OR_RT,
          REG_WRITE,
+         MEM_WRITE,
+         MEM_READ,
          ALU_SRC_B,
          HALT
 );
 
 always_comb begin
+  MEM_WRITE = 0;
+  MEM_READ = 0;
   case(Instruction)
     0: begin
       case(funct)
@@ -23,6 +27,7 @@ always_comb begin
           ALU_SRC_B = 0;    //don't care
           HALT = 0;         //don't halt
           REG_WRITE = 1;    //write to reg_file
+          MEM_READ = 1;
         end
         1: begin //store word
           ALU_OP = 0;       //don't care
@@ -32,6 +37,7 @@ always_comb begin
           ALU_SRC_B = 0;    //don't care
           HALT = 0;         //no halt
           REG_WRITE = 0;    //don't write to reg_file
+          MEM_WRITE = 1;
         end
         2: begin //shift left generate
           ALU_OP = kSLG;
