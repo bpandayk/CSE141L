@@ -47,6 +47,8 @@ module ALU_ABC(
 						BR_FLAG = 0;
 					end
 				  end
+    kBR   : begin
+            OUT = 0; SC_OUT = 0; BR_FLAG = 1;
 	  kBMH  : begin
             OUT = 0;
             SC_OUT = 0;

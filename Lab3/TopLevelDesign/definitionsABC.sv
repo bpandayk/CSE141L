@@ -12,6 +12,7 @@ const logic [3:0] kSLG  = 'b0110;
 const logic [3:0] kSLO  = 'b0111;
 const logic [3:0] kBL   = 'b1000;
 const logic [3:0] kBMH  = 'b1001;
+const logic [3:0] kBR   = 'b1010;
 
 typedef enum logic[3:0] {
         ADDU    = 'h0,
@@ -23,6 +24,7 @@ typedef enum logic[3:0] {
         SLG     = 'h6,
         SLO     = 'h7,
         BL      = 'h8,
-        BMH     = 'h9
+        BMH     = 'h9,
+        BR      = 'hA;
     } op_mne;
 endpackage // defintions

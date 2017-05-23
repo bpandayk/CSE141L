@@ -20,7 +20,7 @@ module TopLevel(
   output        halt);
 // control signals
   wire [ 3:0] write_register;
-  wire [15:0] regWriteValue;
+  wire [7:0] regWriteValue;
   wire        REG_WRITE;
   wire [7:0] memWriteValue;
   wire        MEM_WRITE;
@@ -52,19 +52,20 @@ module TopLevel(
 
 // control write register and write data muxes
   assign write_register = REG_DST? Instruction[5:2]:4b'0000;
-//assign regWriteValue = (MEM_TO_REG==1)?ALUOut:MemOut;
+  regWriteValue = (MEM_TO_REG==1)?ALUOut:MemOut;
   assign regWriteValue = ALUOut;
 
 // control ALU SRC MUX
   assign SE_Immediate    = {{2{Instruction[5]}}, Instruction[5:0]};
-  Mux1 IntermediateMux(
-  ALU_SRC_B==2'b01)? SE_Immediate:ReadB;
-  assign ALUInputB       = (ALU_SRC_B==2'b10)? 0  : IntermediateMux;
+  Mux2 IntermediateMux(
+    .in1 (ReadB),
+    .in2 (SE_Immediate),
+    .outVal (ALUInputB));
 
 // assign input to memory
   assign memWriteValue = ReadB;
 
-// Fetch Module (really just PC, we could have incorporated InstRom here as well)
+``//PC and next PC logic built into if_module
   IF if_module (
     .Branch  (BRANCH & BR_FLAG),
     .Target  (Target), //need to write LUT and use output as input for target
@@ -84,7 +85,7 @@ module TopLevel(
    .lutKey (Instruction[5:0]),
    .targetVal (Target)
   );
-  
+
 // Control module
   Control control_module (
     .OPCODE  (Instruction[9:6]),
