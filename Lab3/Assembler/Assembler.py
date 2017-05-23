@@ -52,6 +52,39 @@ registers = {
     'r15' : 15,
 }
 
+labels = {
+    'OUTER_LOOP' = 0; //string_search labels
+    'INNER_LOOP' = 1;
+    'INC'        = 2;
+    'END_INC'    = 3;
+    'END_INNER'  = 4;
+    'END_OUTER'  = 5; //end of string search labels
+    'LOOP'       = 6; //begin division shft labels
+    'MSWHALF'    = 7;
+    'LSWHALF'    = 8;
+    'QUOT0LSW'   = 9;
+    'QUOT1MSW'   = 10;
+    'QUOT1LSW'   = 11;
+    'CHKLOOP'    = 12;
+    'ENDMOVE'    = 13; //end of division_shift labels
+    'CORDIC_LOOP'= 14; //beginning of cordic labels
+    'GTE_0'      = 15;
+    'SHIFT_Y'    = 16;
+    'END_SHIFT_Y'= 17;
+    'SHIFT_X'    = 18;
+    'END_SHIFT_X'= 19;
+    'SHIFT_1'    = 20;
+    'END_SHIFT_1'= 21;
+    'LT_0'       = 22;
+    'SHIFT_YL'   = 23;
+    'END_SHIFT_YL'=24;
+    'SHIFT_XL'   = 25;
+    'END_SHIFT_XL'=26;
+    'SHIFT_1L'   = 27;
+    'END_SHIFT1L'= 28;
+    'SET_NEW'    = 29;
+}
+
 def assemble(words, outFile):
 
     op = opcode[words[0]]
@@ -61,6 +94,9 @@ def assemble(words, outFile):
         func = funct[words[0]]
         outFile.write(format(reg, 'b').zfill(4))
         outFile.write(format(func, 'b').zfill(2))
+    elif op == 4 or op == 5 or op == 6:
+        label = labels[words[1]];
+        outFile.write(format(labels, 'b').zfill(6))
     else:
         immediate = int(words[1])
         outFile.write(str(Bits(int = immediate, length = 6).bin))
