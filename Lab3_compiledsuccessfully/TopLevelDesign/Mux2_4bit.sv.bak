@@ -1,0 +1,11 @@
+module Mux2(
+  input [3:0] in1,
+  input [3:0] in2,
+  input ctl,
+  output [3:0] outVal
+);
+
+always_comb begin
+  if (ctl == 0) outVal = in1;
+  else outValv=in2;
+endmodule
