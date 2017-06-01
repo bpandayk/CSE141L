@@ -1,0 +1,119 @@
+set 0X16     //MSW dividend from 128
+slg r0
+slg r0
+slg r0
+ld r2
+mv r14
+set 0X1         //MSW dividend from 128
+add  r14
+ld r3
+mv r14
+set 0X1         //divisor from 130
+add  r14
+ld r4
+//set loop counter to 0
+set 0
+mv r1
+//set temporary dividend to  0
+set 0
+mv r7
+//check if divisor is 0 or not
+set 0X1
+mv r15
+set 0
+add r4
+bl ENDMOVE
+br LOOP
+LOOP:
+//if Loop counter is less than 8 then get bit from MSW else from LSW
+set 0x8 
+mv r15
+set 0
+add r1
+bl MSWHALF
+br LSWHALF
+MSWHALF:
+//shift left and generate overflow from MSW and shift left that overflow to temp dividend
+slg r2
+slo r7
+//if temp dividend is less than divisor
+set 0
+add r4 
+mv r15
+set 0
+add r7
+bl QUOT0MSW
+br QUOT1MSW
+LSWHALF:
+//shift left and generate overflow from LSW and shift left that overflow to temp to dividend
+slg r3
+slo r7
+//if temp dividend is less than divisor
+set 0
+add r4 
+mv r15
+set 0
+add r7
+bl QUOT0LSW
+br QUOT1LSW
+//runs if temp dividend is less than divisor for MSW 
+QUOT0MSW:
+set 0X1   //incrementing counter by 1
+add r1
+mv r1
+set 0         //concatenating 1 on the right side of quotient
+slg r0
+slo r5
+br CHKLOOP
+//runs if temp dividend is less than divisor for LSW 
+QUOT0LSW:
+set 0X1      //incrementing counter by 1
+add r1
+mv r1
+set 0         //concatenating 0 on the right side of quotient
+slg r0
+slo r6
+br CHKLOOP
+//runs if temp dividend is more than divisor for MSW 
+QUOT1MSW:
+set 0X1      //incrementing counter by 1
+add r1
+mv r1
+set 0            //subtracting divisor from dividend
+add r7
+sub r4
+mv r2
+set 0X1        //concatenating 1 on the right side of quotient
+srg r0
+slo r5
+br CHKLOOP
+//runs if temp dividend is more than divisor for LSW 
+QUOT1LSW:
+set 0X1      //incrementing counter by 1
+add r1
+mv r1
+set 0            //subtracting divisor from dividend
+add r7
+sub r4
+mv r3
+set 0X1          //concatenating 1 on the right side of quotient
+srg r0
+slo r5
+br CHKLOOP
+//checks if the loop counter is still below 16 and if yes then it reruns the loop
+CHKLOOP:
+set 0X10
+mv r15
+set 0
+add r1 
+bl LOOP
+br ENDMOVE
+ENDMOVE:
+//moving the LSW quotient to memory location
+set 0X2
+sub r14              
+st r6
+//moving the MSW quotient to memory location
+Set 0X3
+Sub r14
+St r5
