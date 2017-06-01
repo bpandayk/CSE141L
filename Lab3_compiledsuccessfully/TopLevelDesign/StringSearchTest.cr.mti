@@ -1,0 +1,103 @@
+C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Control.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Control.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package Control_sv_unit
+-- Importing package definitionsABC
+-- Compiling module Control
+
+Top level modules:
+	Control
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/stringsearch_tb.sv {1 {vlog -work work -sv -stats=none {C:\intelFPGA_lite\16.1\CSE141L\Lab3_compiledsuccessfully\TopLevelDesign\stringsearch_tb.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module stringsearch_tb
+
+Top level modules:
+	stringsearch_tb
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/definitionsABC.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/definitionsABC.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package definitionsABC
+
+Top level modules:
+	--none--
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/reg_file_ABC.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/reg_file_ABC.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module reg_file_ABC
+
+Top level modules:
+	reg_file_ABC
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/TopLevel.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/TopLevel.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module TopLevel
+
+Top level modules:
+	TopLevel
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Mux2.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Mux2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux2
+
+Top level modules:
+	Mux2
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/stringsearch.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/stringsearch.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module stringsearch
+
+Top level modules:
+	stringsearch
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Mux2_4bit.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Mux2_4bit.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux2_4bit
+
+Top level modules:
+	Mux2_4bit
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/data_mem.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/data_mem.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module data_mem
+
+Top level modules:
+	data_mem
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/target_LUT.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/target_LUT.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module target_LUT
+
+Top level modules:
+	target_LUT
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/InstROM.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/InstROM.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module InstROM
+
+Top level modules:
+	InstROM
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Mux3.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/Mux3.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux3
+
+Top level modules:
+	Mux3
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/ALU_ABC.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/ALU_ABC.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package ALU_ABC_sv_unit
+-- Importing package definitionsABC
+-- Compiling module ALU_ABC
+
+Top level modules:
+	ALU_ABC
+
+} {} {}} C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/IF.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/16.1/CSE141L/Lab3_compiledsuccessfully/TopLevelDesign/IF.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module IF
+
+Top level modules:
+	IF
+
+} {} {}}

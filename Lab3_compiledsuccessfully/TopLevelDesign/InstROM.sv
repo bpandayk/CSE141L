@@ -21,7 +21,7 @@ module InstROM #(parameter A=8, W=9)(
   output logic[ W-1:0] InstOut);
 	logic [W-1:0] inst_rom[2**A];
 
-  initial $readmemb("contents.txt", inst_rom);
+  initial $readmemb("stringsearchassembly.txt", inst_rom);
   assign InstOut = inst_rom[InstAddress];
 
 endmodule

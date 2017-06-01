@@ -3,7 +3,7 @@ module Mux3(
   input [7:0] in2,
   input [7:0] in3,
   input [1:0 ]ctl,
-  output outVal
+  output logic [7:0] outVal
 );
 
 always_comb begin

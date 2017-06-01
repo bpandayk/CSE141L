@@ -41,17 +41,17 @@ wire [ 7:0] PC;
 //Instruction ROM input is PC
 
 //Instruction ROM outputs
-wire [ 9:0] Instruction;
+wire [ 8:0] Instruction;
 
 //reg_file inputs
 wire [3:0] write_register;
 wire [7:0] data_in;
 
 Mux2_4bit reg_dst_mux(  //destination register mux
-  .in1(0),
-  .in2(Instruction[5:2]),
-  .ctl(O_OR_RT),
-  .outVal(write_register)
+  .in1    (4'b0000),
+  .in2    (Instruction[5:2]),
+  .ctl    (O_OR_RT),
+  .outVal (write_register)
 );
 
 // Register File data outs
@@ -59,7 +59,7 @@ wire [7:0] data_outA;
 wire [7:0] data_outB;
 
 //ALU inputs
-wire       sc_in;
+logic       sc_in;
 wire [7:0] alu_input_b,
            se_immediate;
 
@@ -73,7 +73,7 @@ Mux2 alu_src_mux(
 );
 
 //ALU Outputs
-wire       sc_out,
+logic       sc_out,
            br_flag;
 wire [7:0] alu_out;
 
@@ -133,8 +133,8 @@ reg_file_ABC register_module (
 .write_en  (REG_WRITE)         ,
 .raddrB    ({Instruction[5:2]}) ,
 .waddr     (write_register)    , 	  // mux above
-.data_in 	(data_in),                      
-.data_outA   (data_outA),                  
+.data_in 	(data_in),
+.data_outA   (data_outA),
 .data_outB	  (data_outB)
 );
 
@@ -154,7 +154,7 @@ end
 
 data_mem Data_Module(
 	.CLK                           ,
-  .DataAddress  (ReadA)          ,
+  .DataAddress  (data_outA)      ,
 	.ReadMem      (MEM_READ)       ,
 	.WriteMem     (MEM_WRITE)      ,
 	.DataIn       (data_outB)  ,

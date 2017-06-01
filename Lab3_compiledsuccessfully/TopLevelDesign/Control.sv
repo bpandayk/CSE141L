@@ -2,9 +2,9 @@ import definitionsABC::*;
 module Control(
   input logic [2:0] opcode,
   input logic [1:0] funct,
-  output [3:0] ALU_OP,
-  output [1:0] DATA_SRC,
-  output BRANCH,
+  output logic [3:0] ALU_OP,
+  output logic [1:0] DATA_SRC,
+  output logic BRANCH,
          O_OR_RT,
          REG_WRITE,
          MEM_WRITE,

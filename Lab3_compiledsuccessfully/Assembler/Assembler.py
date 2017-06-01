@@ -62,7 +62,7 @@ labels = {
     'LOOP'       : 6, #begin division shft labels
     'MSWHALF'    : 7,
     'LSWHALF'    : 8,
-    'QUOT0MSW'   : 9
+    'QUOT0MSW'   : 9,
     'QUOT0LSW'   : 10,
     'QUOT1MSW'   : 11,
     'QUOT1LSW'   : 12,
@@ -87,29 +87,32 @@ labels = {
 }
 
 def assemble(words, outFile):
-
-    op = opcode[words[0]]
-    outFile.write(format(op, 'b').zfill(3))
-    if op == 0:
-        reg = registers[words[1]]
-        func = funct[words[0]]
-        outFile.write(format(reg, 'b').zfill(4))
-        outFile.write(format(func, 'b').zfill(2))
-    elif op == 4 or op == 5 or op == 6:
-        label = labels[words[1]];
-        outFile.write(format(label, 'b').zfill(6))
-    else:
-        immediate = int(words[1])
-        outFile.write(str(Bits(int = immediate, length = 6).bin))
-    outFile.write('    // ')
-    for word in words:
-        outFile.write(word + ' ')
-    outFile.write('\n')
+    if words[0] in opcode:
+        op = opcode[words[0]]
+        outFile.write(format(op, 'b').zfill(3))
+        if op == 0 or op == 1 or op == 2:
+            reg = registers[words[1]]
+            func = funct[words[0]]
+            outFile.write(format(reg, 'b').zfill(4))
+            outFile.write(format(func, 'b').zfill(2))
+        elif op == 4 or op == 5 or op == 6:
+            label = labels[words[1]];
+            outFile.write(format(label, 'b').zfill(6))
+        elif op == 3:
+            immediate = int(words[1])
+            outFile.write(str(Bits(int = immediate, length = 6).bin))
+        else:
+            fill = 0
+            outFile.write(format(fill, 'b').zfill(6))
+        outFile.write('    // ')
+        for word in words:
+            outFile.write(word + ' ')
+        outFile.write('\n')
 
 
 if __name__ == "__main__":
     print("Beginning...")
-    with open('Test.s') as theInputFile, open('machineCodeTest.txt', 'w') as theOutputFile:
+    with open('stringSearch.s') as theInputFile, open('stringsearchassembly.txt', 'w') as theOutputFile:
         count = 1
         for line in theInputFile:
             print ("Assembling line %d" % count)
