@@ -5,7 +5,8 @@ module Control(
   output logic [3:0] ALU_OP,
   output logic [1:0] DATA_SRC,
   output logic BRANCH,
-         O_OR_RT,
+         REG_DST,
+         READ_SRC,
          REG_WRITE,
          MEM_WRITE,
          MEM_READ,
@@ -15,7 +16,8 @@ module Control(
 	always_comb begin
 	MEM_WRITE = 0;
 	MEM_READ = 0;
-	O_OR_RT = 0;
+	REG_DST = 0;
+  READ_SRC=0;
 	REG_WRITE=0;
 	ALU_SRC_B = 0;
 	BRANCH = 0;
@@ -29,7 +31,7 @@ module Control(
           ALU_OP = 0;       //don't care
           DATA_SRC = 0;     //data_mem
           BRANCH = 0;       //no branch
-          O_OR_RT = 1;      //write to rt
+          REG_DST = 1;      //write to rt
           ALU_SRC_B = 0;    //don't care
           HALT = 0;         //don't halt
           REG_WRITE = 1;    //write to reg_file
@@ -39,7 +41,7 @@ module Control(
           ALU_OP = 0;       //don't care
           DATA_SRC = 0;     //don't care
           BRANCH = 0;       //no branch
-          O_OR_RT = 1;      //don't care
+          REG_DST = 1;      //don't care
           ALU_SRC_B = 0;    //don't care
           HALT = 0;         //no halt
           REG_WRITE = 0;    //don't write to reg_file
@@ -49,7 +51,7 @@ module Control(
           ALU_OP = kSLG;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 1;
+          REG_DST = 1;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -58,7 +60,7 @@ module Control(
           ALU_OP = kSLO;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 1;
+          REG_DST = 1;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -71,7 +73,7 @@ module Control(
           ALU_OP = kADDL;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 0;
+          REG_DST = 0;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -80,7 +82,7 @@ module Control(
           ALU_OP = kSUB;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 0;
+          REG_DST = 0;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -89,7 +91,7 @@ module Control(
           ALU_OP = kXOR;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 0;
+          REG_DST = 0;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -98,7 +100,7 @@ module Control(
           ALU_OP = kNOT;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 0;
+          REG_DST = 0;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -111,7 +113,7 @@ module Control(
           ALU_OP = 0;     //don't care
           DATA_SRC = 3;
           BRANCH = 0;
-          O_OR_RT = 1;
+          REG_DST = 1;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -120,7 +122,7 @@ module Control(
           ALU_OP = kSRA;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 1;
+          REG_DST = 1;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -129,7 +131,7 @@ module Control(
           ALU_OP = kSRG;
           DATA_SRC = 1;
           BRANCH = 0;
-          O_OR_RT = 1;
+          REG_DST = 1;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;
@@ -140,7 +142,7 @@ module Control(
       ALU_OP = 0;
       DATA_SRC = 2;
       BRANCH = 0;
-      O_OR_RT = 0;
+      REG_DST = 0;
       ALU_SRC_B = 0;
       HALT = 0;
       REG_WRITE = 1;
@@ -148,8 +150,9 @@ module Control(
     4: begin //bl
       ALU_OP = kBL;
       DATA_SRC = 0;
+      READ_SRC = 1;
       BRANCH = 1;
-      O_OR_RT = 0;
+      REG_DST = 0;
       ALU_SRC_B = 0;
       HALT = 0;
       REG_WRITE = 0;
@@ -157,8 +160,9 @@ module Control(
     5: begin //br
       ALU_OP = kBR;
       DATA_SRC = 0;
+      READ_SRC = 1;
       BRANCH = 1;
-      O_OR_RT = 0;
+      REG_DST = 0;
       ALU_SRC_B = 0;
       HALT = 0;
       REG_WRITE = 0;
@@ -166,8 +170,9 @@ module Control(
     6: begin //bmh
       ALU_OP = kBMH;
       DATA_SRC = 0;
+      READ_SRC = 1;
       BRANCH = 1;
-      O_OR_RT = 0;
+      REG_DST = 0;
       ALU_SRC_B = 0;
       HALT = 0;
       REG_WRITE = 0;
@@ -176,7 +181,7 @@ module Control(
       ALU_OP = 0;
       DATA_SRC = 0;
       BRANCH = 0;
-      O_OR_RT = 0;
+      REG_DST = 0;
       ALU_SRC_B = 0;
       HALT = 1;
       REG_WRITE = 0;

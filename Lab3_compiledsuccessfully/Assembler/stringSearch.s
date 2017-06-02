@@ -49,12 +49,12 @@ END_INC:
 //shift in MSB from r2 to LSB of r3
 slg r2
 slo r3
+set 8
+mv r15
 set 0 //increment inner loop counter
 add r7
 add r14
 mv r7
-mv r15
-set 8 //branch to end of loop if counter is 8, loop again otherwise
 bl INNER_LOOP
 END_INNER:
 set 31 //increment outer_loop counter and check if less than 62

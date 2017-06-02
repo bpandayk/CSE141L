@@ -41,7 +41,7 @@ module ALU_ABC(
 	  kBL   : begin
             OUT = 0;
             SC_OUT = 0;
-					if(INPUTA - INPUTB < 0) begin
+					if({1'b0,INPUTA} < {1'b0,INPUTB}) begin
 						BR_FLAG = 1;
 					end else begin
 						BR_FLAG = 0;

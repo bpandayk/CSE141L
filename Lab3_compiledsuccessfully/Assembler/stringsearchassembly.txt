@@ -33,12 +33,12 @@
 100000101    // bl END_OUTER 
 000001010    // slg r2 
 000001111    // slo r3 
+011001000    // set 8 
+010111100    // mv r15 
 011000000    // set 0 //increment inner loop counter 
 001011100    // add r7 
 001111000    // add r14 
 010011100    // mv r7 
-010111100    // mv r15 
-011001000    // set 8 //branch to end of loop if counter is 8, loop again otherwise 
 100000001    // bl INNER_LOOP 
 011011111    // set 31 //increment outer_loop counter and check if less than 62 
 001000000    // add r0 

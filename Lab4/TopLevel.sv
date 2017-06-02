@@ -22,7 +22,7 @@ module TopLevel(
 wire        REG_WRITE,
             MEM_WRITE,
             MEM_READ,
-            O_OR_RT,
+            REG_DST,
             ALU_SRC_B,
             BRANCH,
             HALT;
@@ -44,14 +44,22 @@ wire [ 7:0] PC;
 wire [ 8:0] Instruction;
 
 //reg_file inputs
-wire [3:0] write_register;
+wire [3:0] write_register,
+           raddrB;
 wire [7:0] data_in;
 
 Mux2_4bit reg_dst_mux(  //destination register mux
   .in1    (4'b0000),
   .in2    (Instruction[5:2]),
-  .ctl    (O_OR_RT),
+  .ctl    (REG_DST),
   .outVal (write_register)
+);
+
+Mux2_4bit reg_read_B(  //destination register mux
+  .in1    (Instruction[5:2]),
+  .in2    (4'b1111),
+  .ctl    (READ_SRC),
+  .outVal (raddrB)
 );
 
 // Register File data outs
@@ -120,7 +128,8 @@ Control control_module (
   .ALU_OP               ,
   .DATA_SRC             ,
   .BRANCH               ,
-  .O_OR_RT              ,
+  .REG_DST              ,
+  .READ_SRC             ,
   .REG_WRITE            ,
   .MEM_WRITE            ,
   .MEM_READ             ,
@@ -132,7 +141,7 @@ Control control_module (
 reg_file_ABC register_module (
 .clk       (CLK)               ,
 .write_en  (REG_WRITE)         ,
-.raddrB    ({Instruction[5:2]}) ,
+.raddrB    (raddrB) ,
 .waddr     (write_register)    , 	  // mux above
 .data_in 	(data_in),
 .data_outA   (data_outA),
