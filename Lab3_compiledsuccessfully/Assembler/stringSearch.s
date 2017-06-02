@@ -40,11 +40,10 @@ add r14
 mv r4
 //check if count1 is 255
 set 0
+add r4
 mv r15
 set 0
-add r4
 not r0
-add r14
 bl END_OUTER
 END_INC:
 //shift in MSB from r2 to LSB of r3

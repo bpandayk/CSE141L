@@ -109,9 +109,9 @@ module Control(
       case(funct)
         0: begin //mv
           ALU_OP = 0;     //don't care
-          DATA_SRC = 1;
+          DATA_SRC = 3;
           BRANCH = 0;
-          O_OR_RT = 0;
+          O_OR_RT = 1;
           ALU_SRC_B = 0;
           HALT = 0;
           REG_WRITE = 1;

@@ -68,7 +68,7 @@ assign se_immediate = {{2{Instruction[5]}}, Instruction[5:0]};
 Mux2 alu_src_mux(
   .in1(data_outB),
   .in2(se_immediate),
-  .ctl(O_OR_RT),
+  .ctl(ALU_SRC_B),
   .outVal(alu_input_b)
 );
 
@@ -80,10 +80,11 @@ wire [7:0] alu_out;
 // Data mem wires
 wire [7:0] mem_out;
 
-Mux3 data_select(
+Mux4 data_select(
   .in1(mem_out),
   .in2(alu_out),
   .in3(se_immediate),
+  .in4(data_outA),
   .ctl(DATA_SRC),
   .outVal(data_in)
 );
