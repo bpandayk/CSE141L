@@ -27,10 +27,11 @@ module ALU_ABC(
     );
 
   op_mne op_mnemonic;			  // type enum: used for convenient waveform viewing
+  logic [7:0] xored, shifted;
 
   always_comb begin
     case(OP)
-	  kADDL : begin {SC_OUT, OUT} = INPUTA + INPUTB + SC_IN; BR_FLAG=0; end    // universal add operation
+	  kADDL : begin {SC_OUT, OUT} = INPUTA + INPUTB; BR_FLAG=0; end    // universal add operation
 	  kSUB  : begin {SC_OUT, OUT} = INPUTA - INPUTB;	BR_FLAG=0; end //subtract
 	  kXOR  : begin OUT = INPUTA ^ INPUTB; SC_OUT=0; BR_FLAG=0; end //XOR INPUTA and INPUTB
 	  kNOT  : begin OUT = ~INPUTB; SC_OUT=0; BR_FLAG=0; end
@@ -53,7 +54,9 @@ module ALU_ABC(
 	  kBMH  : begin
             OUT = 0;
             SC_OUT = 0;
-					if ( (INPUTA>>4)^(INPUTB>>4) == 0 ) begin
+            xored = INPUTA^INPUTB;
+            shifted = xored>>4;
+					if ( shifted == 8'b0 ) begin
 						BR_FLAG = 1;
 					end else begin
 						BR_FLAG = 0;

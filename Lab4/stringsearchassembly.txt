@@ -1,58 +1,58 @@
-011001001    // set 9 
-000000100    // ld r1 
-000000110    // slg r1 
-000000110    // slg r1 
-000000110    // slg r1 
-000000110    // slg r1 
-011000001    // set 1 
-010111000    // mv r14 
-011011111    // set 31 
-001111000    // add r14 
-000001000    // ld r2 
-001111000    // add r14 
-000001100    // ld r3 
-010010100    // mv r5 // r5 contains current memory location of last loaded byte 
-011000000    // set 0 //reset inner loop counter to 0 
-010011100    // mv r7 
-011000000    // set 0 //set all 0s into r15 register 
-010111100    // mv r15 
-011000000    // set 0 
-001000100    // add r1 //put sequence in accumulator register 
-001001110    // xor r3 //xor r3 with sequence. If sequence matches, r0 will contain 0000 in 4 MSBs 
-110000010    // bmh INC 
-101000011    // br END_INC 
-011000000    // set 0 //increment count1 
-001010000    // add r4 
-001111000    // add r14 
-010010000    // mv r4 
-011000000    // set 0 
-001010000    // add r4 
-010111100    // mv r15 
-011000000    // set 0 
-001000011    // not r0 
-100000101    // bl END_OUTER 
-000001010    // slg r2 
-000001111    // slo r3 
-011001000    // set 8 
-010111100    // mv r15 
-011000000    // set 0 //increment inner loop counter 
-001011100    // add r7 
-001111000    // add r14 
-010011100    // mv r7 
-100000001    // bl INNER_LOOP 
-011011111    // set 31 //increment outer_loop counter and check if less than 62 
-001000000    // add r0 
-010111100    // mv r15 
-011000000    // set 0 
-001011000    // add r6 
-001111000    // add r14 
-100000101    // bl END_OUTER 
-011000000    // set 0 //load next byte into r2 
-001010100    // add r5 
-001111000    // add r14 
-010010100    // mv r5 
-000001000    // ld r2 
-101000000    // br OUTER_LOOP 
-011001010    // set 10 
-000010001    // st r4 
-111000000    // halt 
+011001001    // set 9
+000000100    // ld r1
+000000110    // slg r1
+000000110    // slg r1
+000000110    // slg r1
+000000110    // slg r1
+011000001    // set 1
+010111000    // mv r14
+011011111    // set 31
+001111000    // add r14
+000001000    // ld r2
+001111000    // add r14
+000001100    // ld r3
+010010100    // mv r5 OUTER_LOOP
+011000000    // set 0 //reset inner loop counter to 0
+010011100    // mv r7 INNER_LOOP
+011000000    // set 0 //set all 0s into r15 register
+001001100    // add r3
+010111100    // mv r15
+011000000    // set 0
+001000100    // add r1 //put sequence in accumulator register
+110000010    // bmh INC
+101000011    // br END_INC
+011000000    // set 0 //increment count1
+001010000    // add r4
+001111000    // add r14
+010010000    // mv r4
+011000000    // set 0
+001010000    // add r4
+010111100    // mv r15
+011000000    // set 0
+001000011    // not r0
+100000101    // bl END_OUTER
+000001010    // slg r2
+000001111    // slo r3
+011001000    // set 8
+010111100    // mv r15
+011000000    // set 0 //increment inner loop counter
+001011100    // add r7
+001111000    // add r14
+010011100    // mv r7
+100000001    // bl INNER_LOOP
+011011111    // set 31 //increment outer_loop counter and check if less than 62
+001000000    // add r0
+010111100    // mv r15
+011000000    // set 0
+001011000    // add r6
+001111000    // add r14
+100000101    // bl END_OUTER
+011000000    // set 0 //load next byte into r2
+001010100    // add r5
+001111000    // add r14
+010010100    // mv r5
+000001000    // ld r2
+101000000    // br OUTER_LOOP
+011001010    // set 10
+000010001    // st r4
+111000000    // halt

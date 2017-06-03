@@ -17,17 +17,17 @@ r1
 !s85 0
 31
 !i10b 1
-!s100 aNQJGNHClo`;V30`4]Ezo3
-IgHS9GJjYB^2Oj`0Q^b;Ho1
+!s100 5VznE=JQNAMf`JjPem0aL0
+Ii<EaRE7]IP2jVjN[[`]XI0
 !s105 ALU_ABC_sv_unit
 S1
 Z3 dC:/intelFPGA_lite/16.1/CSE141L/Lab4
-Z4 w1496430394
+Z4 w1496447640
 Z5 8C:/intelFPGA_lite/16.1/CSE141L/Lab4/ALU_ABC.sv
 Z6 FC:/intelFPGA_lite/16.1/CSE141L/Lab4/ALU_ABC.sv
 Z7 L0 19
 Z8 OV;L;10.5b;63
-Z9 !s108 1496430446.000000
+Z9 !s108 1496447653.000000
 Z10 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/ALU_ABC.sv|
 Z11 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/ALU_ABC.sv|
 !i113 1
@@ -78,9 +78,9 @@ Z15 8C:/intelFPGA_lite/16.1/CSE141L/Lab4/Control.sv
 Z16 FC:/intelFPGA_lite/16.1/CSE141L/Lab4/Control.sv
 L0 2
 R8
-R9
-Z17 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/Control.sv|
-Z18 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/Control.sv|
+Z17 !s108 1496447654.000000
+Z18 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/Control.sv|
+Z19 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/Control.sv|
 !i113 1
 R12
 R13
@@ -103,16 +103,16 @@ R15
 R16
 L0 1
 R8
-R9
 R17
 R18
+R19
 !i113 1
 R12
 R13
 n@control_sv_unit
 vdata_mem
 R0
-Z19 !s110 1496430447
+!s110 1496447654
 !i10b 1
 !s100 VJfm^n0ei5SSIjmQAWzPS1
 IILhLoi^coQH>S5]7J?UL01
@@ -128,7 +128,7 @@ R8
 r1
 !s85 0
 31
-Z21 !s108 1496430447.000000
+R17
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/data_mem.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/data_mem.sv|
 !i113 1
@@ -136,7 +136,7 @@ R12
 R13
 XdefinitionsABC
 R0
-R19
+Z21 !s110 1496447655
 !i10b 1
 !s100 2TflA_2J64_naUDFZFci_1
 I;@7EDbnzSUOMfY6lgB1R<0
@@ -151,7 +151,7 @@ R8
 r1
 !s85 0
 31
-R21
+Z23 !s108 1496447655.000000
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/definitionsABC.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/definitionsABC.sv|
 !i113 1
@@ -160,7 +160,7 @@ R13
 ndefinitions@a@b@c
 vIF
 R0
-Z23 !s110 1496430448
+R21
 !i10b 1
 !s100 8KlnCiXEBBloeV]?i<;LF3
 IAjN`WIE=biPQEd?[3QEjR0
@@ -176,7 +176,7 @@ R8
 r1
 !s85 0
 31
-Z24 !s108 1496430448.000000
+R23
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/IF.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/IF.sv|
 !i113 1
@@ -185,7 +185,7 @@ R13
 n@i@f
 vInstROM
 R0
-R23
+Z24 !s110 1496447656
 !i10b 1
 !s100 ]J>6f^[daPQ0NPVoT3Zfg1
 Ic3]Ik8^Kd?nJkA3PWNa0>1
@@ -201,7 +201,7 @@ R8
 r1
 !s85 0
 31
-R24
+Z25 !s108 1496447656.000000
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/InstROM.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/InstROM.sv|
 !i113 1
@@ -210,7 +210,7 @@ R13
 n@inst@r@o@m
 vMux2
 R0
-Z25 !s110 1496430449
+R24
 !i10b 1
 !s100 ?FTn;kK5KFR4f5kIRl@jM3
 IBoZhzRQ2MENiCUKC0Jf_@0
@@ -226,7 +226,7 @@ R8
 r1
 !s85 0
 31
-Z26 !s108 1496430449.000000
+R25
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/Mux2.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/Mux2.sv|
 !i113 1
@@ -235,7 +235,7 @@ R13
 n@mux2
 vMux2_4bit
 R0
-R25
+Z26 !s110 1496447657
 !i10b 1
 !s100 T>QZ?;[l8MZXml6:_YH1c3
 Il]GNE]h7^^Ya5BzO2AkH31
@@ -251,7 +251,7 @@ R8
 r1
 !s85 0
 31
-R26
+Z27 !s108 1496447657.000000
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/Mux2_4bit.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/Mux2_4bit.sv|
 !i113 1
@@ -285,7 +285,7 @@ R13
 n@mux3
 vMux4
 R0
-Z27 !s110 1496430450
+R26
 !i10b 1
 !s100 MY0ZD7c3<B`KO>QiQT:k[2
 I3i2R`6:NfBdzLFYO9kPWP3
@@ -301,7 +301,7 @@ R8
 r1
 !s85 0
 31
-Z28 !s108 1496430450.000000
+R27
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/Mux4.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/Mux4.sv|
 !i113 1
@@ -310,7 +310,7 @@ R13
 n@mux4
 vreg_file_ABC
 R0
-R27
+Z28 !s110 1496447658
 !i10b 1
 !s100 ?0c:A88@D=KT2XUYQzji41
 In8FLh_:@N;[J7E1HYF1243
@@ -326,7 +326,7 @@ R8
 r1
 !s85 0
 31
-R28
+Z29 !s108 1496447658.000000
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/reg_file_ABC.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/reg_file_ABC.sv|
 !i113 1
@@ -335,7 +335,7 @@ R13
 nreg_file_@a@b@c
 vstringsearch
 R0
-Z29 !s110 1496430451
+R28
 !i10b 1
 !s100 d<h?;l@>5X0`N_LWOn1d41
 IIV4IGC1N:e2R3^KB2`[712
@@ -351,7 +351,7 @@ R8
 r1
 !s85 0
 31
-R28
+R29
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/stringsearch.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/stringsearch.sv|
 !i113 1
@@ -359,7 +359,7 @@ R12
 R13
 vstringsearch_tb
 R0
-R29
+Z30 !s110 1496447659
 !i10b 1
 !s100 UNDjSFFMjcJQiB:GgMi_10
 IbbA@P]_=zN:Xi7V`jFk?32
@@ -375,7 +375,7 @@ R8
 r1
 !s85 0
 31
-Z30 !s108 1496430451.000000
+Z31 !s108 1496447659.000000
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/stringsearch_tb.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/stringsearch_tb.sv|
 !i113 1
@@ -383,7 +383,7 @@ R12
 R13
 vtarget_LUT
 R0
-Z31 !s110 1496430452
+R30
 !i10b 1
 !s100 gLS_JebQ50kicJhN>?Y2=0
 IooPgQi>imC6WhliJIAWak3
@@ -399,7 +399,7 @@ R8
 r1
 !s85 0
 31
-R30
+R31
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/target_LUT.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/target_LUT.sv|
 !i113 1
@@ -408,7 +408,7 @@ R13
 ntarget_@l@u@t
 vTopLevel
 R0
-R31
+!s110 1496447660
 !i10b 1
 !s100 lYXDlkSi[oR]N5HaR8Sd62
 I`_]L3]>BDzFB]z2:]kj;O0
@@ -424,7 +424,7 @@ R8
 r1
 !s85 0
 31
-!s108 1496430452.000000
+!s108 1496447660.000000
 !s107 C:/intelFPGA_lite/16.1/CSE141L/Lab4/TopLevel.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/16.1/CSE141L/Lab4/TopLevel.sv|
 !i113 1

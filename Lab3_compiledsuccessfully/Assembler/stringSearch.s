@@ -27,10 +27,10 @@ set 0 //reset inner loop counter to 0
 mv r7
 INNER_LOOP: // loops 8 times to shift all of r2 into r3
 set 0 //set all 0s into r15 register
+add r3
 mv r15
 set 0
 add r1 //put sequence in accumulator register
-xor r3 //xor r3 with sequence. If sequence matches, r0 will contain 0000 in 4 MSBs
 bmh INC
 br END_INC
 INC:

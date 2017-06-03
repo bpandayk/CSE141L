@@ -15,10 +15,10 @@
 011000000    // set 0 //reset inner loop counter to 0 
 010011100    // mv r7 
 011000000    // set 0 //set all 0s into r15 register 
+001001100    // add r3 
 010111100    // mv r15 
 011000000    // set 0 
 001000100    // add r1 //put sequence in accumulator register 
-001001110    // xor r3 //xor r3 with sequence. If sequence matches, r0 will contain 0000 in 4 MSBs 
 110000010    // bmh INC 
 101000011    // br END_INC 
 011000000    // set 0 //increment count1 
