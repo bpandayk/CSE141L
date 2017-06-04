@@ -1,0 +1,90 @@
+011010000    // set 16 //MSW dividend from 128 
+000000010    // slg r0 
+000000010    // slg r0 
+000000010    // slg r0 
+000001000    // ld r2 
+010111000    // mv r14 
+011000001    // set 1 //MSW dividend from 128 
+001111000    // add r14 
+000001100    // ld r3 
+010111000    // mv r14 
+011000001    // set 1 //divisor from 130 
+001111000    // add r14 
+000010000    // ld r4 
+011000000    // set 0 
+010000100    // mv r1 
+011000000    // set 0 
+010011100    // mv r7 
+011000001    // set 1 
+010111100    // mv r15 
+011000000    // set 0 
+001010000    // add r4 
+100001110    // bl ENDMOVE 
+101000110    // br LOOP 
+011001000    // set 8 
+010111100    // mv r15 
+011000000    // set 0 
+001000100    // add r1 
+100000111    // bl MSWHALF 
+101001000    // br LSWHALF 
+000001010    // slg r2 
+000011111    // slo r7 
+011000000    // set 0 
+001010000    // add r4 
+010111100    // mv r15 
+011000000    // set 0 
+001011100    // add r7 
+100001001    // bl QUOT0MSW 
+101001011    // br QUOT1MSW 
+000001110    // slg r3 
+000011111    // slo r7 
+011000000    // set 0 
+001010000    // add r4 
+010111100    // mv r15 
+011000000    // set 0 
+001011100    // add r7 
+100001010    // bl QUOT0LSW 
+101001100    // br QUOT1LSW 
+011000001    // set 1 //incrementing counter by 1 
+001000100    // add r1 
+010000100    // mv r1 
+011000000    // set 0 //concatenating 1 on the right side of quotient 
+000000010    // slg r0 
+000010111    // slo r5 
+101001101    // br CHKLOOP 
+011000001    // set 1 //incrementing counter by 1 
+001000100    // add r1 
+010000100    // mv r1 
+011000000    // set 0 //concatenating 0 on the right side of quotient 
+000000010    // slg r0 
+000011011    // slo r6 
+101001101    // br CHKLOOP 
+011000001    // set 1 //incrementing counter by 1 
+001000100    // add r1 
+010000100    // mv r1 
+011000000    // set 0 //subtracting divisor from dividend 
+001011100    // add r7 
+001010001    // sub r4 
+010001000    // mv r2 
+011000001    // set 1 //concatenating 1 on the right side of quotient 
+000010111    // slo r5 
+101001101    // br CHKLOOP 
+011000001    // set 1 //incrementing counter by 1 
+001000100    // add r1 
+010000100    // mv r1 
+011000000    // set 0 //subtracting divisor from dividend 
+001011100    // add r7 
+001010001    // sub r4 
+010001100    // mv r3 
+011000001    // set 1 //concatenating 1 on the right side of quotient 
+000010111    // slo r5 
+101001101    // br CHKLOOP 
+011000001    // set 1 
+010111100    // mv r15 
+011000000    // set 0 
+001000100    // add r1 
+100000110    // bl LOOP 
+101001110    // br ENDMOVE 
+011000010    // set 2 
+001111001    // sub r14 
+000011001    // st r6 
