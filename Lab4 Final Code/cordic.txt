@@ -1,0 +1,246 @@
+011000001    // set 1 //set all initial X_temp, Y_temp, and theta_temp 
+000001000    // ld r2 //X MSW 
+011000010    // set 2 
+000001100    // ld r3 //X LSW 
+011000011    // set 3 
+000010000    // ld r4 //Y MSW 
+011000100    // set 4 
+000010100    // ld r5 //Y LSW 
+001000010    // xor r0 
+001001000    // add r2 
+010100000    // mv r8 //copy of X MSW 
+001000010    // xor r0 
+001001100    // add r3 
+010100100    // mv r9 //copy of X LSW 
+001000010    // xor r0 
+001010000    // add r4 
+010101000    // mv r10 //copy of Y MSW 
+001000010    // xor r0 
+001010100    // add r5 
+010101100    // mv r11 //copy of Y LSW 
+101001011    // br END_SHIFT_Y //y is in first quadrant so skip to after shift //CORDIC_LOOP: 
+001000010    // xor r0 
+010111100    // mv r15 
+001010000    // add r4 
+100010000    // bl LT_0 //otherwise y is greater than or = 0 
+001000010    // xor r0 //store y_temp in temp registers 
+001010000    // add r4 
+010101000    // mv r10 
+011000000    // set 0 
+001010100    // add r5 
+010101100    // mv r11 
+011000000    // set 0 
+010111000    // mv r14 //shift counter SHIFT_Y: 
+010010001    // sra r4 //shift y_temp 
+010010110    // sro r5 
+001000010    // xor r0 //put i in comparator register 
+001000100    // add r1 
+010111100    // mv r15 
+011000001    // set 1 //increment shift counter and check if it is less than i 
+001111000    // add r14 
+010111000    // mv r14 
+100001010    // bl SHIFT_Y //END_SHIFT_Y: 
+001000010    // xor r0 //add x_temp and shifted y_temp 
+001001100    // add r3 
+001010100    // add r5 
+010100100    // mv r9 //store x_new in r8 and r9 
+011000000    // set 0 
+001001000    // add r2 
+001010000    // add r4 
+010100000    // mv r8 
+011000000    // set 0 //clear shift counter 
+010111000    // mv r14 
+001001111    // not r3 //flip x_temp 
+010001100    // mv r3 
+001001011    // not r2 
+010001000    // mv r2 
+011000001    // set 1 
+001001100    // add r3 
+010001100    // mv r3 
+011000000    // set 0 
+001001000    // add r2 
+010001000    // mv r2 //end x_temp flip 
+011000001    // set 1 
+010111100    // mv r15 
+001000010    // xor r0 
+001000100    // add r1 
+100001101    // bl END_SHIFT_X //skip shifting x on iteration 1 SHIFT_X: 
+010001001    // sra r2 
+010001110    // sro r3 
+001000010    // xor r0 
+001000100    // add r1 
+010111100    // mv r15 
+011000001    // set 1 
+001111000    // add r14 
+010111000    // mv r14 
+100001100    // bl SHIFT_X //END_SHIFT_X: 
+001000010    // xor r0 
+001001100    // add r3 //add y_temp and shifted x_temp 
+001101100    // add r11 
+010101100    // mv r11 
+011000000    // set 0 
+001001000    // add r2 
+010001000    // mv r2 
+001000010    // xor r0 
+001001000    // add r2 
+001101000    // add r10 
+010101000    // mv r10 
+001000010    // xor r0 
+010111000    // mv r14 
+010001000    // mv r2 //use r2 and r3 to hold shifted 1 value 
+011000001    // set 1 
+010001100    // mv r3 
+011001011    // set 11 //skip if i is 11 
+010111100    // mv r15 
+011000000    // set 0 
+001000100    // add r1 
+100001110    // bl SHIFT_1 
+101001111    // br END_SHIFT1 //SHIFT_1: 
+000001110    // slg r3 
+000001011    // slo r2 
+011001011    // set 11 
+001000101    // sub r1 
+010111100    // mv r15 
+011000001    // set 1 
+001111000    // add r14 
+010111000    // mv r14 
+100001110    // bl SHIFT_1 //END_SHIFT1: 
+001000010    // xor r0 
+010111000    // mv r14 
+001001100    // add r3 
+001011100    // add r7 
+010011100    // mv r7 
+011000000    // set 0 
+001001000    // add r2 
+001011000    // add r6 
+010011000    // mv r6 
+101010101    // br SET_NEW //LT_0: 
+001000010    // xor r0 //store y_temp in temp registers 
+010111000    // mv r14 
+001010000    // add r4 
+010101000    // mv r10 
+011000000    // set 0 
+001010100    // add r5 
+010101100    // mv r11 
+001010011    // not r4 //flip y_temp 
+010010000    // mv r4 
+001010111    // not r5 
+010010100    // mv r5 
+011000001    // set 1 
+001010100    // add r5 
+010010100    // mv r5 
+011000000    // set 0 
+001010000    // add r4 
+010010000    // mv r4 //SHIFT_YL: 
+010010001    // sra r4 //shift y 
+010010110    // sro r5 
+001000010    // xor r0 
+001000100    // add r1 
+010111100    // mv r15 
+011000001    // set 1 
+001111000    // add r14 
+010111000    // mv r14 
+100010001    // bl SHIFT_YL 
+001000010    // xor r0 //add x_temp and shifted y_temp and store 
+001001100    // add r3 
+001010100    // add r5 
+010100100    // mv r9 
+011000000    // set 0 
+001001000    // add r2 
+001010000    // add r4 
+010100000    // mv r8 
+001000010    // xor r0 
+010111000    // mv r14 //SHIFT_XL: 
+010001001    // sra r2 //shift X 
+010001110    // sro r3 
+001000010    // xor r0 //clear SC bit and set r0 to 0 
+001000100    // add r1 
+010111100    // mv r15 
+011000001    // set 1 
+001111000    // add r14 
+010111000    // mv r14 
+100010010    // bl SHIFT_XL 
+001000010    // xor r0 
+010111000    // mv r14 
+001001100    // add r3 //add y_temp and shifted x_temp 
+001101100    // add r11 
+010101100    // mv r11 
+011000000    // set 0 
+001001000    // add r2 
+001101000    // add r10 
+010101000    // mv r10 
+001000010    // xor r0 
+010001000    // mv r2 
+011000001    // set 1 
+010001100    // mv r3 
+011001011    // set 11 //skip if i is 11 
+010111100    // mv r15 
+011000000    // set 0 
+001000100    // add r1 
+100010011    // bl SHIFT_1L 
+101010100    // br END_SHIFT1L //SHIFT_1L: 
+000001110    // slg r3 
+000001011    // slo r2 
+011001011    // set 11 
+001000101    // sub r1 
+010111100    // mv r15 
+011000001    // set 1 
+001111000    // add r14 
+010111000    // mv r14 
+100010011    // bl SHIFT_1L //END_SHIFT1L: 
+001000010    // xor r0 
+010111000    // mv r14 
+001001111    // not r3 //twos comp of shifted 1 
+010001100    // mv r3 
+001001011    // not r2 
+010001000    // mv r2 
+011000001    // set 1 
+001001100    // add r3 
+010001100    // mv r3 
+011000000    // set 0 
+001001000    // add r2 
+010001000    // mv r2 //end twos comp 
+001000010    // xor r0 
+001011100    // add r7 
+001001100    // add r3 
+010011100    // mv r7 
+011000000    // set 0 
+001011000    // add r6 
+001001000    // add r2 
+010011000    // mv r6 //SET_NEW: 
+001000010    // xor r0 
+001100100    // add r9 
+010001100    // mv r3 
+011000000    // set 0 
+001100000    // add r8 
+010001000    // mv r2 
+011000000    // set 0 
+001101100    // add r11 
+010010100    // mv r5 
+011000000    // set 0 
+001101000    // add r10 
+010010000    // mv r4 
+001000010    // xor r0 
+011001100    // set 12 
+010111100    // mv r15 
+011000001    // set 1 
+001000100    // add r1 
+010000100    // mv r1 
+100001001    // bl CORDIC_LOOP 
+011000101    // set 5 
+000001001    // st r2 
+011000110    // set 6 
+000001101    // st r3 
+000011110    // slg r7 
+000011011    // slo r6 
+000011110    // slg r7 
+000011011    // slo r6 
+000011110    // slg r7 
+000011011    // slo r6 
+000011110    // slg r7 
+000011011    // slo r6 
+011000111    // set 7 
+000011001    // st r6 
+011001000    // set 8 
+000011101    // st r7 
+111000000    // halt 

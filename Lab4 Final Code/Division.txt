@@ -1,0 +1,64 @@
+011010000    // set 16 //MSW dividend from 128 
+000000010    // slg r0 
+000000010    // slg r0 
+000000010    // slg r0 
+000001000    // ld r2 
+010111000    // mv r14 
+011000001    // set 1 //LSW dividend from 129 
+001111000    // add r14 
+000001100    // ld r3 
+010111000    // mv r14 
+011000001    // set 1 //divisor from 130 
+001111000    // add r14 
+000010000    // ld r4 
+011000000    // set 0 //set loop counter to 0 
+010000100    // mv r1 
+011000000    // set 0 //set temporary dividend to 0 
+010011100    // mv r7 //LOOP: 
+000001010    // slg r2 //shift MSB off dividend 
+000011111    // slo r7 //shift overflow into div 
+010001001    // sra r2 
+000001110    // slg r3 //shift MSB of LSW into LSB of MSW 
+000001011    // slo r2 
+001000010    // xor r0 
+001010000    // add r4 
+010000010    // sro r0 
+010111100    // mv r15 //put divisor in comp reg 
+001000010    // xor r0 
+001011100    // add r7 //put div in r0 
+010000010    // sro r0 
+100000111    // bl PUSH0 //div less than divisor 
+000011010    // slg r6 //move MSB of LSW of quotient to 
+000010111    // slo r5 //LSB of MSW of quotient 
+011000001    // set 1 
+001011000    // add r6 
+010011000    // mv r6 
+011000000    // set 0 //div=div-divisor_temp 
+001011100    // add r7 
+001010001    // sub r4 
+010011100    // mv r7 
+101001000    // br END_PUSH //PUSH0: 
+000011010    // slg r6 //move MSB of LSW of quotient to 
+000010111    // slo r5 //LSB of MSW of quotient //END_PUSH: 
+011010000    // set 16 
+010111100    // mv r15 
+011000000    // set 0 
+010000001    // sra r0 
+011000001    // set 1 
+001000100    // add r1 
+010000100    // mv r1 
+100000110    // bl LOOP 
+011000011    // set 3 
+010101000    // mv r10 
+011000000    // set 0 
+010000001    // sra r0 
+001111000    // add r14 
+001101001    // sub r10 
+010111000    // mv r14 
+000010101    // st r5 
+011000000    // set 0 
+010000001    // sra r0 
+011000001    // set 1 
+001111000    // add r14 
+000011001    // st r6 
+111000000    // halt 
